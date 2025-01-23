@@ -3,6 +3,7 @@ package hiber.model;
 import javax.persistence.*;
 
 @Entity
+@Table
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

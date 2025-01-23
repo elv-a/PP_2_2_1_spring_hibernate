@@ -1,7 +1,6 @@
 package hiber;
 
 import hiber.config.AppConfig;
-import hiber.dao.UserDao;
 import hiber.model.Car;
 import hiber.model.User;
 import hiber.service.UserService;
@@ -41,7 +40,7 @@ public class MainApp {
          System.out.println();
       }
 
-      System.out.println(userService.findUserByCar("BMW", 2022));
+      System.out.println(userService.findUserByCar("NISSAN", 2023));
 
       context.close();
    }

@@ -2,10 +2,10 @@ package hiber.dao;
 
 import hiber.model.User;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -30,10 +30,10 @@ public class UserDaoImp implements UserDao {
    @Override
    public User findUserByCar(String model, int series) {
       Query query = sessionFactory.getCurrentSession()
-              .createQuery("SELECT u FROM User u JOIN u.car c WHERE c.model = :model AND c.series = :series");
+              .createQuery("FROM User u JOIN FETCH u.car c WHERE c.model = :model " +
+                      "AND c.series = :series");
       return (User) query.setParameter("model", model)
-              .setParameter("series", series)
-              .setMaxResults(1).getSingleResult();
+              .setParameter("series", series).uniqueResult();
    }
 
 }
